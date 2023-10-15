@@ -1,13 +1,10 @@
-terraform() {
+aws() {
   : '
   # What
-  Spawn container with specific TF version from Hashicorp official TF image.
+  Spawn container with latest tag from AWS official AWS CLI image.
 
   # Usage
-  terraform --version
-  terraform plan
-  terraform apply
-  terraform destroy
+  aws --version
   '
 
   docker run \
@@ -18,5 +15,5 @@ terraform() {
   --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
   --env AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN} \
   --interactive \
-  hashicorp/terraform:1.6.0 "$@"
+  amazon/aws-cli:latest "$@"
 }
