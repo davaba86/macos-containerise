@@ -39,7 +39,8 @@ ansible() {
   ansible --version
   '
 
-  docker run --rm \
+  docker run \
+    --rm \
     --volume $(PWD)/:/src/ \
     --workdir /src/ \
     --interactive \
@@ -55,7 +56,8 @@ ansible-playbook() {
   ansible-playbook --version
   '
 
-  docker run --rm \
+  docker run \
+    --rm \
     --volume $(PWD)/:/src/ \
     --workdir /src/ \
     --interactive \
@@ -71,7 +73,8 @@ ansible-galaxy() {
   ansible-galaxy collection list
   '
 
-  docker run --rm \
+  docker run \
+    --rm \
     --volume $(PWD)/:/src/ \
     --workdir /src/ \
     --interactive \

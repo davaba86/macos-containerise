@@ -2,7 +2,8 @@
 
 - [1. Overview](#1-overview)
 - [2. Projects](#2-projects)
-  - [2.1. Ansible](#21-ansible)
+  - [2.1. Terraform](#21-terraform)
+  - [2.2. Ansible](#22-ansible)
 - [3. Future Work](#3-future-work)
 
 ## 1. Overview
@@ -13,11 +14,19 @@ Take Ansible for e.g. where you need to install several packages so instead of c
 
 ## 2. Projects
 
-### 2.1. Ansible
+### 2.1. Terraform
+
+When spawning a container from the official Hashicorp image be aware of that your credentials need to be forwarded to the container.
+
+I for e.g. use awsume to authenticate to AWS and once the ENV VARs are set I forward them to the container.
+
+Have a look at `zsh-functions-terraform.sh` for more details on the usage.
+
+### 2.2. Ansible
 
 In order to start using the Dockerfile you also need to build an image from it as well as spawn containers via shell functions.
 
-Have a look at the `zsh-functions-ansible.sh` for more info on how to use the Dockerfile inside the ansible folder.
+Have a look at `zsh-functions-ansible.sh` for more details on the usage.
 
 ## 3. Future Work
 
@@ -27,5 +36,4 @@ Have a look at the `zsh-functions-ansible.sh` for more info on how to use the Do
 - [ ] Kubernetes
 - [ ] Python
 - [ ] Spotify
-- [ ] Terraform
 - [ ] shell script to add function files as syn links into ~/.zshrc.d/ to create one source of truth
