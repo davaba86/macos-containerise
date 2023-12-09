@@ -1,19 +1,9 @@
-ansible-build() {
-  : '
-  # What
-  Create Ansible Docker container from Python image under non-root user.
-
-  # Usage
-  ansible-build
-  '
-
-  docker build --tag ansible-local:latest --file Dockerfile .
-}
+#!/bin/zsh
 
 ansible-exec() {
   : '
   # What
-  Spawn container from image with tag ansible-local, created from ansible-build.
+  Spawn container from image to build and test.
 
   # Usage
   ansible-exec
@@ -24,10 +14,10 @@ ansible-exec() {
 	--interactive \
 	--tty \
 	--network host \
-	--volume $(PWD):/src/ \
+	--volume "$(PWD)":/src/ \
 	--workdir /src/ \
-	--entrypoint /bin/bash \
-	ansible-local:latest
+	--entrypoint /bin/sh \
+	davaba/ansible:latest
 }
 
 ansible() {
@@ -41,10 +31,10 @@ ansible() {
 
   docker run \
     --rm \
-    --volume $(PWD)/:/src/ \
+    --volume "$(PWD)"/:/src/ \
     --workdir /src/ \
     --interactive \
-    ansible-local ansible "$@"
+    davaba/ansible ansible "$@"
 }
 
 ansible-playbook() {
@@ -58,10 +48,10 @@ ansible-playbook() {
 
   docker run \
     --rm \
-    --volume $(PWD)/:/src/ \
+    --volume "$(PWD)"/:/src/ \
     --workdir /src/ \
     --interactive \
-    ansible-local ansible-playbook "$@"
+    davaba/ansible ansible-playbook "$@"
 }
 
 ansible-galaxy() {
@@ -75,8 +65,8 @@ ansible-galaxy() {
 
   docker run \
     --rm \
-    --volume $(PWD)/:/src/ \
+    --volume "$(PWD)"/:/src/ \
     --workdir /src/ \
     --interactive \
-    ansible-local ansible-galaxy "$@"
+    davaba/ansible ansible-galaxy "$@"
 }
